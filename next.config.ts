@@ -1,13 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "standalone",
+  // Remove standalone output for AWS Amplify compatibility
   reactStrictMode: true,
-  
-  // Allow preview subdomain for development
-  allowedDevOrigins: [
-    'preview-chat-53ac2756-8aa7-43e1-88e7-fd24687c80e4.space.z.ai',
-  ],
   
   // Security headers for production
   async headers() {
@@ -35,7 +30,7 @@ const nextConfig: NextConfig = {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
           },
-          // Content Security Policy - allow frames for preview, block in production
+          // Content Security Policy
           {
             key: 'Content-Security-Policy',
             value: [
