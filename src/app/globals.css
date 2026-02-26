@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Aurora OSI v2.0 - Production Build */
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
