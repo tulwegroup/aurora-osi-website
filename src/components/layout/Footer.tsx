@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { Globe, Mail, Shield } from 'lucide-react'
+import Image from 'next/image'
+import { Mail, Shield } from 'lucide-react'
 
 const footerLinks = {
   platform: [
@@ -15,6 +16,7 @@ const footerLinks = {
     { name: 'Carbon Storage', href: '#applications' },
   ],
   company: [
+    { name: 'Brochures & Media', href: '#resources' },
     { name: 'Strategic Engagement', href: '#engagement' },
     { name: 'Request Briefing', href: '#engagement' },
   ],
@@ -35,7 +37,13 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-3 mb-6">
-              <Globe className="w-9 h-9 text-[#c9844a]" />
+              <Image
+                src="/assets/aurora-logo-transparent.png"
+                alt="Aurora OSI logo"
+                width={36}
+                height={36}
+                className="w-9 h-9 object-contain"
+              />
               <div className="flex flex-col">
                 <span className="text-lg font-semibold tracking-[0.15em] text-white">AURORA</span>
                 <span className="text-[9px] tracking-[0.35em] text-[#c9844a] uppercase font-medium">OSI</span>
@@ -77,6 +85,23 @@ export function Footer() {
             <h3 className="text-sm font-semibold tracking-wide mb-5 text-white">Applications</h3>
             <ul className="space-y-4">
               {footerLinks.applications.map((link) => (
+                <li key={link.name}>
+                  <button
+                    onClick={() => scrollToSection(link.href)}
+                    className="text-sm text-[#a0a0b0] hover:text-[#c9844a] transition-colors font-light"
+                  >
+                    {link.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company Links */}
+          <div>
+            <h3 className="text-sm font-semibold tracking-wide mb-5 text-white">Company</h3>
+            <ul className="space-y-4">
+              {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <button
                     onClick={() => scrollToSection(link.href)}

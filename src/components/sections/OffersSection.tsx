@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
+import { useLazyVideoThumb } from '@/hooks/useLazyVideoThumb'
 import {
   Activity,
   ArrowRight,
@@ -41,6 +42,9 @@ export function OffersSection() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [videoLoaded, setVideoLoaded] = useState(false)
   const [videoError, setVideoError] = useState(false)
+  const { containerRef: videoContainerRef, isInView, posterUrl } = useLazyVideoThumb(
+    '/videos/landing-hero.mp4', 2
+  )
 
   const handleVideoLoaded = () => setVideoLoaded(true)
   const handleVideoError = () => setVideoError(true)
@@ -96,20 +100,20 @@ export function OffersSection() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="mb-20 md:mb-24"
         >
-          <div className="relative aurora-border rounded-xl overflow-hidden bg-[#0a0a10] aspect-video shadow-[0_30px_80px_-30px_rgba(201,132,74,0.30)]">
-            {/* The video element. When the user drops landing-hero.mp4 into
-                public/videos/, this picks it up automatically. */}
+          <div ref={videoContainerRef} className="relative aurora-border rounded-xl overflow-hidden bg-[#0a0a10] aspect-video shadow-[0_30px_80px_-30px_rgba(201,132,74,0.30)]">
+            {/* Only load video metadata once the section nears the viewport.
+                The poster is a live frame captured from the clip itself. */}
             <video
               ref={videoRef}
               controls
-              preload="metadata"
-              poster="/logo.svg"
+              preload={isInView ? 'metadata' : 'none'}
+              poster={posterUrl ?? undefined}
               className="absolute inset-0 w-full h-full object-cover"
               onLoadedMetadata={handleVideoLoaded}
               onError={handleVideoError}
             >
-              <source src="/videos/landing-hero.mp4" type="video/mp4" />
-              <source src="/videos/landing-hero.webm" type="video/webm" />
+              {isInView && <source src="/videos/landing-hero.mp4" type="video/mp4" />}
+              {isInView && <source src="/videos/landing-hero.webm" type="video/webm" />}
             </video>
 
             {/* Placeholder shown while video metadata is loading or if the

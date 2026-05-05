@@ -52,6 +52,8 @@
 
 :root {
   --radius: 0.625rem;
+  --font-geist-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  --font-geist-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   /* Aurora Dark Theme - Forced */
   --background: #050508;
   --foreground: #ffffff;

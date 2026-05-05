@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Globe } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
@@ -11,6 +12,7 @@ const navigation = [
   { name: 'Platform', href: '#platform' },
   { name: 'Applications', href: '#applications' },
   { name: 'Digital Twin', href: '#digital-twin' },
+  { name: 'Resources', href: '#resources' },
   { name: 'Engagement', href: '#engagement' },
 ]
 
@@ -48,7 +50,13 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <div className="relative w-11 h-11">
-              <Globe className="w-11 h-11 text-[#c9844a] transition-transform duration-500 group-hover:rotate-12" />
+              <Image
+                src="/assets/aurora-logo-transparent.png"
+                alt="Aurora OSI logo"
+                width={44}
+                height={44}
+                className="w-11 h-11 object-contain transition-transform duration-500 group-hover:scale-105"
+              />
               <div className="absolute inset-0 bg-[#c9844a]/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
             <div className="flex flex-col">
